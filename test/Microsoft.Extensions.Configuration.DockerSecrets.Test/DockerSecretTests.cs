@@ -42,6 +42,24 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
             Assert.Equal("SecretValue1", config["Secret1"]);
             Assert.Equal("SecretValue2", config["Secret2"]);
         }
+
+        [Fact]
+        public void CanLoadMultipleSecretsWithDirectory()
+        {
+            var testFileProvider = new TestFileProvider(
+                new TestFile("Secret1", "SecretValue1"),
+                new TestFile("Secret2", "SecretValue2"),
+                new TestFile("directory"));
+
+            var source = new DockerSecretsConfigurationSource(testFileProvider);
+
+            var config = new ConfigurationBuilder()
+                .Add(source)
+                .Build();
+
+            Assert.Equal("SecretValue1", config["Secret1"]);
+            Assert.Equal("SecretValue2", config["Secret2"]);
+        }
     }
 
     class TestFileProvider : IFileProvider
@@ -97,6 +115,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
         }
     }
 
+    //TODO: Probably need a directory and file type.
     class TestFile : IFileInfo
     {
         private string _name;
@@ -112,10 +131,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
 
         public bool IsDirectory
         {
-            get
-            {
-                return false;
-            }
+            get;
         }
 
         public DateTimeOffset LastModified
@@ -150,6 +166,12 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
             }
         }
 
+        public TestFile(string name)
+        {
+            _name = name;
+            IsDirectory = true;
+        }
+
         public TestFile(string name, string contents)
         {
             _name = name;
@@ -158,6 +180,11 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
 
         public Stream CreateReadStream()
         {
+            if(IsDirectory)
+            {
+                throw new InvalidOperationException("Cannot create stream from directory");
+            }
+
             return new MemoryStream(Encoding.UTF8.GetBytes(_contents));
         }
     }

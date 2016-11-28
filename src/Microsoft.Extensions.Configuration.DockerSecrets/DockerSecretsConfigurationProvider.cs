@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
                 {
                     return;
                 }
-                throw new InvalidOperationException($"The FileProvider of {nameof(Source)} is null in a non-optonal provider.");
+                throw new InvalidOperationException($"The FileProvider of {nameof(Source)} is null in a non-optional provider.");
             }
 
             var secretsDir = Source.FileProvider.GetDirectoryContents("/");
@@ -41,9 +41,14 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
             {
                 throw new FileNotFoundException("Secrets directory doesn't exist and is not optional.");
             }
-
+            
             foreach (var file in secretsDir)
             {
+                if(file.IsDirectory)
+                {
+                    continue;
+                }
+
                 var stream = file.CreateReadStream();
                 try
                 {

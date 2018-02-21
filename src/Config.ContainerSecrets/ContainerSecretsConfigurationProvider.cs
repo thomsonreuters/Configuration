@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 
-namespace Microsoft.Extensions.Configuration.DockerSecrets
+namespace Microsoft.Extensions.Configuration.ContainerSecrets
 {
     /// <summary>
-    /// An docker secrets based <see cref="ConfigurationProvider"/>.
+    /// An container secrets based <see cref="ConfigurationProvider"/>.
     /// </summary>
-    public class DockerSecretsConfigurationProvider : ConfigurationProvider
+    public class ContainerSecretsConfigurationProvider : ConfigurationProvider
     {
-        DockerSecretsConfigurationSource Source { get; set; }
+        ContainerSecretsConfigurationSource Source { get; set; }
 
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
         /// <param name="source">The settings.</param>
-        public DockerSecretsConfigurationProvider(DockerSecretsConfigurationSource source)
+        public ContainerSecretsConfigurationProvider(ContainerSecretsConfigurationSource source)
         {
             Source = source ?? throw new ArgumentNullException(nameof(source));
         }
@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
         }
 
         /// <summary>
-        /// Loads the docker secrets.
+        /// Loads the container secrets.
         /// </summary>
         public override void Load()
         {
@@ -45,14 +45,14 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
                 }
                 else
                 {
-                    throw new DirectoryNotFoundException("DockerSecrets directory doesn't exist and is not optional.");
+                    throw new DirectoryNotFoundException("Container Secrets directory doesn't exist and is not optional.");
                 }
             }
 
             var secretsDir = Source.FileProvider.GetDirectoryContents("/");
             if (!secretsDir.Exists && !Source.Optional)
             {
-                throw new DirectoryNotFoundException("DockerSecrets directory doesn't exist and is not optional.");
+                throw new DirectoryNotFoundException("Container Secrets directory doesn't exist and is not optional.");
             }
 
             foreach (var file in secretsDir)

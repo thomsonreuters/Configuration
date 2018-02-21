@@ -8,20 +8,20 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Primitives;
 using Xunit;
 
-namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
+namespace Microsoft.Extensions.Configuration.ContainerSecrets.Test
 {
-    public class DockerSecretTests
+    public class ContainerSecretTests
     {
         [Fact]
         public void ThrowsWhenNotOptionalAndNoSecrets()
         {
-            Assert.Throws<DirectoryNotFoundException>(() => new ConfigurationBuilder().AddDockerSecrets().Build());
+            Assert.Throws<DirectoryNotFoundException>(() => new ConfigurationBuilder().AddContainerSecrets().Build());
         }
 
         [Fact]
         public void DoesNotThrowWhenOptionalAndNoSecrets()
         {
-            new ConfigurationBuilder().AddDockerSecrets(o => o.Optional = true).Build();
+            new ConfigurationBuilder().AddContainerSecrets(o => o.Optional = true).Build();
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o => o.FileProvider = testFileProvider)
+                .AddContainerSecrets(o => o.FileProvider = testFileProvider)
                 .Build();
 
             Assert.Equal("SecretValue1", config["Secret1"]);
@@ -48,7 +48,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("directory"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o => o.FileProvider = testFileProvider)
+                .AddContainerSecrets(o => o.FileProvider = testFileProvider)
                 .Build();
 
             Assert.Equal("SecretValue1", config["Secret1"]);
@@ -64,7 +64,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret0__Key", "SecretValue0"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o => o.FileProvider = testFileProvider)
+                .AddContainerSecrets(o => o.FileProvider = testFileProvider)
                 .Build();
 
             Assert.Equal("SecretValue0", config["Secret0:Key"]);
@@ -81,7 +81,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o => o.FileProvider = testFileProvider)
+                .AddContainerSecrets(o => o.FileProvider = testFileProvider)
                 .Build();
 
             Assert.Null(config["ignore.Secret0"]);
@@ -98,7 +98,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o =>
+                .AddContainerSecrets(o =>
                 {
                     o.FileProvider = testFileProvider;
                     o.IgnoreCondition = null;
@@ -119,7 +119,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o =>
+                .AddContainerSecrets(o =>
                 {
                     o.FileProvider = testFileProvider;
                     o.IgnoreCondition = s => true;
@@ -138,7 +138,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o =>
+                .AddContainerSecrets(o =>
                 {
                     o.FileProvider = testFileProvider;
                     o.IgnorePrefix = "me";
@@ -159,7 +159,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets.Test
                 new TestFile("Secret2", "SecretValue2"));
 
             var config = new ConfigurationBuilder()
-                .AddDockerSecrets(o =>
+                .AddContainerSecrets(o =>
                 {
                     o.FileProvider = testFileProvider;
                     o.IgnorePrefix = null;

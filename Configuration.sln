@@ -62,9 +62,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Config
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Configuration.UserSecrets.Test", "test\Config.UserSecrets.Test\Config.UserSecrets.Test.csproj", "{AC7FAD2A-5763-404D-B0FC-3CCA81A16B0A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Configuration.DockerSecrets", "src\Config.DockerSecrets\Config.DockerSecrets.csproj", "{69AB0230-D82E-438B-AFE5-85BFF414F1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Configuration.ContainerSecrets", "src\Config.ContainerSecrets\Config.ContainerSecrets.csproj", "{69AB0230-D82E-438B-AFE5-85BFF414F1B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Configuration.DockerSecrets.Test", "test\Config.DockerSecrets.Test\Config.DockerSecrets.Test.csproj", "{82A403ED-F827-4FED-BE38-7F87925A07E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Configuration.ContainerSecrets.Test", "test\Config.ContainerSecrets.Test\Config.ContainerSecrets.Test.csproj", "{82A403ED-F827-4FED-BE38-7F87925A07E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerSecretsSample", "samples\ContainerSecretsSample\ContainerSecretsSample.csproj", "{CF224150-395A-4D11-928F-48581A7A9739}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B926267F-98A3-41F0-90F5-0B1ADF78CA65}"
 	ProjectSection(SolutionItems) = preProject
@@ -183,6 +185,9 @@ Global
 		{7AAC49A7-939A-40B1-A86A-705464B4667D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AAC49A7-939A-40B1-A86A-705464B4667D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AAC49A7-939A-40B1-A86A-705464B4667D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF224150-395A-4D11-928F-48581A7A9739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF224150-395A-4D11-928F-48581A7A9739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF224150-395A-4D11-928F-48581A7A9739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B6443B-1278-4DF9-B7BB-DDF3BFFCF868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58B6443B-1278-4DF9-B7BB-DDF3BFFCF868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B6443B-1278-4DF9-B7BB-DDF3BFFCF868}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -226,6 +231,7 @@ Global
 		{A538F609-E902-40CE-8459-4248F9F63558} = {F141E2D0-F9B8-4ADB-A19A-7B6FF4CA19A1}
 		{DA9C1F35-3F92-4F3A-B3B1-A62CCE626D48} = {B54371FF-B920-46C8-8D55-6B19DBB43EBF}
 		{7AAC49A7-939A-40B1-A86A-705464B4667D} = {AB015580-541D-4E2D-B904-E71F8582CC68}
+		{CF224150-395A-4D11-928F-48581A7A9739} = {AB015580-541D-4E2D-B904-E71F8582CC68}
 		{58B6443B-1278-4DF9-B7BB-DDF3BFFCF868} = {F141E2D0-F9B8-4ADB-A19A-7B6FF4CA19A1}
 		{AC7FAD2A-5763-404D-B0FC-3CCA81A16B0A} = {B54371FF-B920-46C8-8D55-6B19DBB43EBF}
 		{69AB0230-D82E-438B-AFE5-85BFF414F1B8} = {F141E2D0-F9B8-4ADB-A19A-7B6FF4CA19A1}

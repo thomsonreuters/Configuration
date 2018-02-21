@@ -2,17 +2,17 @@ using System;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 
-namespace Microsoft.Extensions.Configuration.DockerSecrets
+namespace Microsoft.Extensions.Configuration.ContainerSecrets
 {
     /// <summary>
-    /// An <see cref="ConfigurationProvider"/> for docker secrets.
+    /// An <see cref="ConfigurationProvider"/> for container secrets.
     /// </summary>
-    public class DockerSecretsConfigurationSource : IConfigurationSource
+    public class ContainerSecretsConfigurationSource : IConfigurationSource
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public DockerSecretsConfigurationSource()
+        public ContainerSecretsConfigurationSource()
         {
             IgnoreCondition = s => IgnorePrefix != null && s.StartsWith(IgnorePrefix);
         }
@@ -28,7 +28,7 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
         public IFileProvider FileProvider { get; set; }
 
         /// <summary>
-        /// Docker secrets that start with this prefix will be excluded.
+        /// Container secrets that start with this prefix will be excluded.
         /// </summary>
         public string IgnorePrefix { get; set; } = "ignore.";
 
@@ -43,13 +43,13 @@ namespace Microsoft.Extensions.Configuration.DockerSecrets
         public bool Optional { get; set; }
 
         /// <summary>
-        /// Builds the <see cref="DockerSecretsConfigurationProvider"/> for this source.
+        /// Builds the <see cref="ContainerSecretsConfigurationProvider"/> for this source.
         /// </summary>
         /// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
-        /// <returns>A <see cref="DockerSecretsConfigurationProvider"/></returns>
+        /// <returns>A <see cref="ContainerSecretsConfigurationProvider"/></returns>
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new DockerSecretsConfigurationProvider(this);
+            return new ContainerSecretsConfigurationProvider(this);
         }
     }
 }

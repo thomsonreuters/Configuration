@@ -21,10 +21,12 @@ RUN apt-get update \
 
 ENV PATH="/root/.dotnet/:${PATH}"
 
-COPY . ./
+COPY run.sh run.sh
 
 RUN ./run.sh install-tools \
     && dotnet help
+
+COPY . ./
 
 RUN dotnet restore /samples/ContainerSecretsSample/ContainerSecretsSample.csproj
 RUN dotnet publish -c Release --framework netcoreapp2.1 -o /app /samples/ContainerSecretsSample/ContainerSecretsSample.csproj

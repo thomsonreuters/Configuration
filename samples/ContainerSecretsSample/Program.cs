@@ -8,18 +8,14 @@ namespace ConsoleApplication
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("settings.json");
+            builder.AddContainerSecrets("/etc/foo", false);
 
             var config = builder.Build();
-
-            builder.AddContainerSecrets();
-
-            config = builder.Build();
-
-            Console.WriteLine(config["ConnectionString"]);
+            Console.WriteLine(config["password"]);
+            return 0;
         }
     }
 }

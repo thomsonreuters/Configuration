@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: container-secrets-sample-job
+spec:
+  template:
+    spec:
+      volumes:
+      - name: foo
+        secret:
+          secretName: test-secret
+      containers:
+      - name: container-secrets-sample
+        image: container-secrets-sample
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: foo
+          mountPath: "/etc/foo"
+          readOnly: true
+      restartPolicy: Never
+  backoffLimit: 4
+  

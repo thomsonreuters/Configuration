@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "dotnet-test-xunit": "1.0.0-rc3-000000-01",
-    "Microsoft.Extensions.Configuration.Json": "1.0.2",
+    "Microsoft.Extensions.Configuration.Json": "1.0.3",
     "Microsoft.Extensions.Configuration.Test.Common": "1.0.0-*",
     "xunit": "2.1.0"
   },
@@ -13,7 +13,7 @@
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "version": "1.0.10",
+          "version": "1.0.11-servicing-005046-00",
           "type": "platform"
         },
         "System.Diagnostics.Process": "4.1.0"
